@@ -4,7 +4,7 @@
 class Node():
     def __init__(self, i):
         self.info = i
-        self.next = None
+        self.before = None
 
     def __str__(self):
         return str(self.info)
@@ -12,39 +12,37 @@ class Node():
 
 class LinkedStack():
     def __init__(self):
-        self.first = None
-        self.last = None
+        self.top = None
 
     def insert(self, node):
-        if not self.first:
-            self.first = node
-            self.last = node
+        if not self.top:
+            self.top = node
             return
-        j = self.first
-        self.first = node
-        node.next = j
+        j = self.top
+        self.top = node
+        node.before = j
         return
 
     def access(self):
-        if not self.first:
+        if not self.top:
             print('ERROR: Empty stack.')
             return
-        return self.first.info
+        return self.top.info
 
     def parse(self):
-        node = self.first
+        node = self.top
         if not node:
             print('ERROR: Empty stack.')
         while node:
             print(node.info, end=' ')
-            node = node.next
+            node = node.before
         print()
 
     def delete(self):
-        if not self.first:
+        if not self.top:
             print('ERROR: Empty stack.')
             return
-        j = self.first.next
-        self.first.next = None
-        self.first = j
+        j = self.top.before
+        self.top.before = None
+        self.top = j
         return
