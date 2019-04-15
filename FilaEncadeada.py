@@ -39,9 +39,9 @@ class FilaE():
     def delete(self):
         if not self.first:
             return
-        j = self.first.next
+        temp = self.first.next
         self.first.next = None
-        self.first = j
+        self.first = temp
         return
 
     def count_it(self):
