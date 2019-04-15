@@ -18,9 +18,8 @@ class LinkedStack():
         if not self.top:
             self.top = node
             return
-        j = self.top
+        node.before = self.top
         self.top = node
-        node.before = j
         return
 
     def access(self):
@@ -33,16 +32,33 @@ class LinkedStack():
         node = self.top
         if not node:
             print('ERROR: Empty stack.')
+            return
+        print('Top ->', end=' ')
         while node:
             print(node.info, end=' ')
             node = node.before
         print()
+        return
 
     def delete(self):
         if not self.top:
             print('ERROR: Empty stack.')
             return
-        j = self.top.before
-        self.top.before = None
-        self.top = j
+        self.top = temp
+        self.top = self.top.before
+        temp = None
         return
+
+    def count_r(self):
+        return self.count_re(self.top)
+
+    def count_re(self, node):
+        if not node:
+            return 0
+        return 1 + self.count_re(node.before)
+
+    def height(self, node):
+        return self.count_re(node.before)
+
+    def depth(self, node):
+        return self.height(self.top) - self.height(node)
