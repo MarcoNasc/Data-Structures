@@ -1,6 +1,11 @@
 # LISTA SEQUENCIAL
 
-from nodo import *
+class Node():
+    def __init__(self, info):
+        self.info = info
+
+    def __str__(self):
+        return str(self.info)
 
 class Fila:
     def __init__(self, maxlen):
