@@ -1,24 +1,32 @@
 # PILHA SEQUENCIAL
 
-from nodo import *
+
+class Node():
+    def __init__(self, info):
+        self.info = info
+
+    def __str__(self):
+        return str(self.info)
+
 
 class SeqStack():
-    def __init__(self, max):
+    def __init__(self, maxi):
         self.stack = []
-        self.max = max - 1
+        self.maxi = maxi - 1
         self.top = 0
 
-    def stacking(self, node):
-        if self.top > self.max:
-            print('ERROR:\n risk of stack overflow, operation aborted')
-        elif self.top <= self.max:
-            self.stack.append(node)
-            self.top += 1
+    def insert(self, node):
+        if self.top > self.maxi:
+            print('ERROR:\n Risk of stack overflow, operation aborted')
+            return
+        self.stack.append(node)
+        self.top += 1
 
     def unstacking(self):
         try:
             self.stack.pop()
             self.top -= 1
+            return
         except IndexError:
             print('ERROR:\nEmpty stack.')
 
@@ -27,15 +35,18 @@ class SeqStack():
             if self.stack[0]:
                 return False
         except IndexError:
-                return True
+            return True
 
     def size(self):
         print(self.top)
+        return
 
     def parse(self):
         try:
             for i in self.stack:
-                print(i.val, end=' ')
+                print(i, end=' ')
             print()
+            return
         except IndexError:
-            print('ERROR:\n empty stack.')
+            print('ERROR:\n Empty stack.')
+            return
