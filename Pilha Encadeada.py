@@ -35,7 +35,7 @@ class LinkedStack():
             return
         print('Top ->', end=' ')
         while node:
-            print(node.info, end=' ')
+            print(node, end=' ')
             node = node.before
         print()
         return
@@ -44,9 +44,9 @@ class LinkedStack():
         if not self.top:
             print('ERROR: Empty stack.')
             return
-        self.top = temp
+        remove = self.top 
         self.top = self.top.before
-        temp = None
+        remove.before = None
         return
 
     def count_r(self):
